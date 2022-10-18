@@ -5,10 +5,10 @@
 ---
 
 
-### In this project, I test the search functionality and verify the languages, title, and header features of the page in the "https://www.wikipedia.org" site
+## In this project, I test the search functionality and verify the languages, title, and header features of the page in the "https://www.wikipedia.org" site
 
 
-### Using Tools and Libraries
+## Using Tools and Libraries
 - IntellJ as a IDE,
 - Java as a programming language,
 - Maven as an automation tool,
@@ -18,7 +18,7 @@
 - Singleton desing pattern, 
 
 
-### Installation
+## Installation
 
 1. Creating new **Maven Project** from **IntellJ**  
 
@@ -77,12 +77,12 @@
 
 4. Creating files and folders for project structure to apply POM design pattern
 	- creating ***configuration.properties*** file under the root folder and adding `browser=chrome` to avoid hard coding
-	- creating **resources** folder under test folder
-	- creating **features** folder under resources folder for features files for the project
-	- creating **com.practice** folder under the java folder
-	- creating **pages, **runners, step_definitions,** and **utilities** folders under the practice folder
+	- creating **resources** folder under **test** folder
+	- creating **features** folder under **resources** folder for features files for the project
+	- creating **com.practice** folder under the **java** folder
+	- creating **pages, **runners, step_definitions,** and **utilities** folders under the **practice** folder
 
-5. Creating ***CukesRunner.java*** file under the runner folder and adding runner features
+5. Creating ***CukesRunner.java*** file under the **runner** folder and adding runner features
 ```
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -96,7 +96,7 @@ public class CukesRunner {
 }
 ```
 
-6. Creating ***ConfigurationReader.java*** file under utilities to read *configuration.properties* files
+6. Creating ***ConfigurationReader.java*** file under **utilities** to read *configuration.properties* files
 ```
 	public class ConfigurationReader {
 
@@ -123,7 +123,7 @@ public class CukesRunner {
 }
 ```
 
-7. Creating ***driver.java*** file to return same driver instance when we call it to apply Singleton design pattern
+7. Creating ***driver.java*** file under the **utilities** folder to return same driver instance when we call it to apply Singleton design pattern
 ```
 public class Driver {
 
@@ -172,7 +172,7 @@ public class Driver {
 }
 ```
 
-8. Creating ***Hooks.java*** to add pre&post conditions to each scenario and each step, and adding some steps in it to take screenshots if a scenario will be fail
+8. Creating ***Hooks.java*** file under the **utilities** folder to add pre&post conditions to each scenario and each step, and adding some steps in it to take screenshots if a scenario will be fail
 ```
 public class Hooks {
     
@@ -186,7 +186,7 @@ public class Hooks {
 }
 ```
 
-9. Creating ***wikiSearch.feature*** file under the feature folder and writing scenarios with **Gherkin** language
+9. Creating ***wikiSearch.feature*** file under the **features** folder and writing scenarios with **Gherkin** language
 ```
 Feature: Wikipedia search functionality
   As a user, when I am on the Wiki search page
@@ -195,12 +195,27 @@ Feature: Wikipedia search functionality
   Background:
     Given user is on Wiki search page
 
+  @wip_ali
+  Scenario Outline: Search fuctionality verification
+    When user types "<searchValue>" a name of the list to search
+    And user click search icon
+    Then User sees "<expectedHeader>" is in the main header
+    And User sees "<pictureHeader>" is above of the picture
+
+    Examples: search values
+      | searchValue         | expectedHeader      | pictureHeader       |
+      | Steve Jobs          | Steve Jobs          | Steve Jobs          |
+      | Bill Gates          | Bill Gates          | Bill Gates          |
+      | Friedrich Nietzsche | Friedrich Nietzsche | Friedrich Nietzsche |
+      | Immanuel Kant       | Immanuel Kant       | Immanuel Kant       |
+      | İsmet Özel          | İsmet Özel          | İsmet Özel          |
+
+  @wip_ali
   Scenario Outline: Language dropdown menu verification on the right side of the search bar
-    When user click the language dropdown menu
-    And user select "<Language>" as a search language
+    When user click the language dropdown menu and select "<Language>" as a search language
     Then user should see "<Shorten>" of language on the right side
 
-    Examples:
+    Examples: Language values
       | Language | Shorten |
       | English  | EN      |
       | Deutsch  | DE      |
@@ -208,37 +223,113 @@ Feature: Wikipedia search functionality
       | Türkçe   | TR      |
 
 
- Scenario Outline: Search fuctionality verification
-    When user types "<searchValue>" a name of the list to search
-    And user click search icon
-    Then User sees "<expectedTitle>" is in the wiki title
-    And User sees "<expectedMainHeader>" is in the main header
-    
-    Examples: search values 
-      | searchValue       | expectedTitle     | expectedMainHeader |
-      | Steve Jobs        | Steve Jobs        | Steve Jobs         |
-      | Cristiano Ronaldo | Cristiano Ronaldo | Cristiano Ronaldo  |
-      | Bob Marley        | Bob Marley        | Bob Marley         |
-      | Chuck Norris      | Chuck Norris      | Chuck Norris       |
-      | Antony Hopkins    | Antony Hopkins    | Antony Hopkins     |
-
   Scenario Outline: Searching with different language verification
-    When user click the language dropdown menu
-    And user select "<Search Language>" as a search language
+    When user click the language dropdown menu and select "<Search Language>" as a search language
     And user write "Steve Jobs" in search bar
     And user click search icon
     Then result page should be seen selected "<Result Language>"
 
-  Examples:
-    | Search Language | Result Language |
-    | English         | EN              |
-    | Deutsch         | DE              |
-    | Français        | FR              |
-    | Türkçe          | TR              |
+    Examples: Language values
+      | Search Language | Result Language |
+      | English         | EN              |
+      | Deutsch         | DE              |
+      | Français        | FR              |
+      | Türkçe          | TR              |
 
 ```
 
-10. Creating ***wikiSearch_StepDefinitions.java*** under the *step_definitions* folder and snippet steps from *wikiSearch.feature* file  
+10. Creating ***wiki_StepDefinitions.java*** under the **step_definitions** folder and snippet steps from ***wikiSearch.feature*** file  
+```
+public class wiki_StepDefinitions {
+
+    @Given("user is on Wiki search page")
+    public void user_is_on_wiki_search_page() {
+        
+    }
+
+    @When("user click the language dropdown menu and select {string} as a search language")
+    public void userClickTheLanguageDropdownMenuAndSelectAsASearchLanguage(String str) {
+        
+    }
+
+    @Then("user should see {string} of language on the right side")
+    public void user_should_see_of_language_on_the_right_side(String string) {
+        
+    }
+
+    @When("user types {string} a name of the list to search")
+    public void user_types_a_name_of_the_list_to_search(String string) {
+        
+    }
+
+    @When("user click search icon")
+    public void user_click_search_icon() {
+        
+    }
+
+    @Then("User sees {string} is in the main header")
+    public void user_sees_is_in_the_main_header(String string) {
+        
+    }
+    @Then("User sees {string} is above of the picture")
+    public void user_sees_is_above_of_the_picture(String string) {
+        
+    }
+
+    @When("user write {string} in search bar")
+    public void user_write_in_search_bar(String string) {
+
+    }
+
+    @Then("result page should be seen selected {string}")
+    public void result_page_should_be_seen_selected(String string) {
+
+    }
+}
 ```
 
+11. Creating ***WikiSearchPage.java*** under the **pages** folder and add related WebElements and methods in it.
 ```
+public class WikiSearchPage {
+
+    //create constructor
+    // initialize the driver instance and this class' instance using PageFactory.initElements
+    public WikiSearchPage(){
+        PageFactory.initElements(Driver.getDriver(),this);
+    }
+
+    @FindBy(id = "searchInput")
+    public WebElement searchBox;
+
+    @FindBy(xpath = "//button[@type='submit']")
+    public WebElement searchButton;
+
+    public static void selectFromDropdownOption(String str){
+
+        Select select=new Select(Driver.getDriver().findElement(By.id("searchLanguage")));
+        select.selectByVisibleText(str);
+    }
+}
+```
+
+12. Creating an object in **wiki_StepDefinitions.java** to able to use WebElements and methods of WikiSearchPage
+`WikiSearchPage wikiSearchPage=new WikiSearchPage();`
+
+13. Creating ***WikiResultPage.java*** under the **pages** folder and add related WebElements and methods in it.
+```
+public class WikiResultPage {
+
+    public WikiResultPage(){
+        PageFactory.initElements(Driver.getDriver(),this);
+    }
+
+    @FindBy(className = "mw-page-title-main")
+    public WebElement mainHeader;
+
+    @FindBy(className = "infobox-above")
+    public WebElement pictureTitle;
+}
+```
+
+14. Creating an object in **wiki_StepDefinitions.java** to able to use WebElements and methods of WikiResultPage
+`WikiResultPage wikiResultPage=new WikiResultPage();`
