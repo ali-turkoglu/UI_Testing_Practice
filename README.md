@@ -1,7 +1,9 @@
 
 # Testing Wikipedia
 
-In this project, I create whole steps from scratch to test the search functionality and verify the languages, title, and header features of the page in the "https://www.wikipedia.org" site. We can see how to create simple test steps, and how to use some libraries here. We can also see the implementation of Singleton and POM(Page Object Model) design patterns.
+In this project, I create whole steps from scratch to test the search functionality and verify the languages, title, and header features of the page in the "https://www.wikipedia.org" site. 
+
+We can see how to create simple test steps, and how to use some libraries here. We can also see the implementation of Singleton and POM(Page Object Model) design patterns.
 
 ## Using Tools and Libraries
 - IntellJ as a IDE,
@@ -55,7 +57,7 @@ In this project, I create whole steps from scratch to test the search functional
     <scope>test</scope>
 </dependency>
 ```
-- SLF4J Failed
+- SLF4J Failed (This is not necessary)
 ```
 <!--If you want to get rid of SLF4J Failed to load message from the console -->
 <dependency>
@@ -76,7 +78,7 @@ In this project, I create whole steps from scratch to test the search functional
 	- creating **com.practice** folder under the **java** folder
 	- creating **pages, **runners, step_definitions,** and **utilities** folders under the **practice** folder
 
-5. Creating ***CukesRunner.java*** file under the **runner** folder and adding runner features
+5. Creating ***CukesRunner.java*** file under the **runner** folder and adding runner features. When I was typing some steps, I used the @wip_ali tag above the scenarios to run only the scenario have this tag. 
 ```
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -84,7 +86,7 @@ In this project, I create whole steps from scratch to test the search functional
         features = "src/test/resources/features",
         glue = "com/practise/step_definitions",
         dryRun = false,
-        tags = ""
+        tags = "@wip_ali"
 )
 public class CukesRunner {
 }
@@ -92,7 +94,7 @@ public class CukesRunner {
 
 6. Creating ***ConfigurationReader.java*** file under **utilities** to read *configuration.properties* files
 ```
-	public class ConfigurationReader {
+public class ConfigurationReader {
 
     private static Properties properties = new Properties();
 
@@ -307,6 +309,7 @@ public class WikiSearchPage {
 ```
 
 12. Creating an object in **Wiki_StepDefinitions.java** to able to use WebElements and methods of WikiSearchPage
+
 `WikiSearchPage wikiSearchPage=new WikiSearchPage();`
 
 13. Creating ***WikiResultPage.java*** under the **pages** folder and add related WebElements and methods in it.
@@ -326,6 +329,7 @@ public class WikiResultPage {
 ```
 
 14. Creating an object in **Wiki_StepDefinitions.java** to able to use WebElements and methods of WikiResultPage
+
 `WikiResultPage wikiResultPage=new WikiResultPage();`
 
 15. After adding steps, latest version of ***Wiki_StepDefinitions.java*** is:
