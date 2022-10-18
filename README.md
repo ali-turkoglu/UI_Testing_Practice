@@ -1,4 +1,4 @@
-		NOT FINISHED YET
+- *Not Finished Yet*
 ---
 
 # Testing Wikipedia Pages
@@ -18,7 +18,7 @@
 - Singleton desing pattern, 
 
 
-## Installation
+## Installation and Implementation
 
 1. Creating new **Maven Project** from **IntellJ**  
 
