@@ -8,6 +8,7 @@ We can see how to create simple test steps, and how to use some libraries here. 
 ## Using Tools and Libraries
 - IntellJ as a IDE,
 - Java as a programming language,
+- Selenium WebDriver,
 - Maven as an automation tool,
 - Cucumber BDD framework for the smart logic and non-technical team members,
 - JUnit as a testing tool,
